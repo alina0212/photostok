@@ -3,8 +3,6 @@
 import os
 import sys
 
-# перевірка push
-
 
 def main():
     """Run administrative tasks."""
