@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import checkout.apps
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
 
     'main.apps.MainConfig',
     'cart.apps.CartConfig',
+    'checkout.apps.CheckoutConfig'
 ]
 
 MIDDLEWARE = [

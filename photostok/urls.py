@@ -18,11 +18,14 @@ from django.contrib import admin
 from django.urls import path
 from main.views import home
 from cart.views import cart
+from checkout.views import checkout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('cart/', cart, name='cart'),
-    path('cart.html', cart, name='cart_html')
+    path('cart.html', cart, name='cart_html'),
+    path('checkout/', checkout, name='checkout'),
+    path('checkout.html', checkout, name='checkout_html'),
 
 ]
