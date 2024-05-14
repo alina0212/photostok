@@ -19,10 +19,13 @@ from django.urls import path
 
 from main.views import main
 from shop.views import shop
+from product.views import product
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main, name='main'),
     path('shop/', shop, name='shop'),
-    path('shop.html', shop, name='shop_html')
+    path('shop.html', shop, name='shop_html'),
+    path('/product', product, name='product'),
+    path('product.html', product, name='product_html')
 ]
