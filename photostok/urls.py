@@ -34,6 +34,6 @@ urlpatterns = [
 
     path('shop/', shop, name='shop'),
     path('shop.html', shop, name='shop_html'),
-    path('/product', product, name='product'),
+    path('product/', product, name='product'),
     path('product.html', product, name='product_html')
 ]
