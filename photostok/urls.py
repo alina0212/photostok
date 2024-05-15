@@ -19,14 +19,21 @@ from django.urls import path
 from main.views import main
 from cart.views import cart
 from checkout.views import checkout
+from shop.views import shop
+from product.views import product
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main, name='main'),
     path('index.html', main, name='main_html'),
+
     path('cart/', cart, name='cart'),
     path('cart.html', cart, name='cart_html'),
     path('checkout/', checkout, name='checkout'),
     path('checkout.html', checkout, name='checkout_html'),
 
+    path('shop/', shop, name='shop'),
+    path('shop.html', shop, name='shop_html'),
+    path('/product', product, name='product'),
+    path('product.html', product, name='product_html')
 ]
