@@ -14,11 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from main.views import main
 from cart.views import cart
 from checkout.views import checkout
+from photostok import settings
 from shop.views import shop
 from product.views import product
 
@@ -37,3 +39,8 @@ urlpatterns = [
     path('product/', product, name='product'),
     path('product.html', product, name='product_html')
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])

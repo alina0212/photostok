@@ -1,7 +1,14 @@
 from django.shortcuts import render
+from .models import Category
+from product.models import Product
 
 
 # Create your views here.
 def shop(request):
-    return render(request, 'shop_content.html')
+    categories = Category.objects.all()
+    products = Product.objects.filter(is_visible=True)
+    return render(request, 'shop_content.html', context={
+        'categories': categories,
+        'products': products,
+    })
 # Create your views here.
