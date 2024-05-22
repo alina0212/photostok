@@ -59,14 +59,15 @@
                     {% for category in categories %}
                         {% if forloop.first %}
                             <li class="nav-item">
-                                <a class="nav-link active show" data-bs-toggle="tab"
-                                   data-bs-target="menu-{{ category.slug }}">
+                                <a class="nav-link {% if category in categories_choice %}active show{% endif %}"
+                                   href="?category={{ category.slug }}">
                                     <h6>{{ category.name }}</h6>
                                 </a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" data-bs-target="menu-{{ category.slug }}">
+                                <a class="nav-link {% if category in categories_choice %}active show{% endif %}"
+                                   href="?category={{ category.slug }}">
                                     <h6>{{ category.name }}</h6>
                                 </a>
                             </li>
@@ -141,7 +142,7 @@
             <div class="row">
 
                 <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                    {% for category in categories_choise %}
+                    {% for category in categories_choice %}
                         {#                     {% for product in products %}#}
                         <div class="single-product-wrapper" id="menu-{{ category.slug }}">
                             {% for product in category %}
@@ -193,4 +194,5 @@
         </div>
     </div>
 </div>
+
 <!-- ##### Main Content Wrapper End ##### -->
