@@ -1,188 +1,196 @@
 {% load static %}
 <!-- ##### Main Content Wrapper Start ##### -->
-    <div class="main-content-wrapper d-flex clearfix">
+<div class="main-content-wrapper d-flex clearfix">
 
-        <!-- Mobile Nav (max width 767px)-->
-        <div class="mobile-nav">
-            <!-- Navbar Brand -->
-            <div class="amado-navbar-brand">
-                <a href="{% static "index.html" %}" ><img src="{% static "img/core-img/logo.png"%}" alt=""></a>
-            </div>
-            <!-- Navbar Toggler -->
-            <div class="amado-navbar-toggler">
-                <span></span><span></span><span></span>
-            </div>
+    <!-- Mobile Nav (max width 767px)-->
+    <div class="mobile-nav">
+        <!-- Navbar Brand -->
+        <div class="amado-navbar-brand">
+            <a href="{% static "index.html" %}"><img src="{% static "img/core-img/logo.png" %}" alt=""></a>
         </div>
-
-        <!-- Header Area Start -->
-        <header class="header-area clearfix">
-            <!-- Close Icon -->
-            <div class="nav-close">
-                <i class="fa fa-close" aria-hidden="true"></i>
-            </div>
-            <!-- Logo -->
-            <div class="logo">
-                <a href=index.html"><img src="{% static "img/core-img/logo.png" %}" alt=""></a>
-            </div>
-            <!-- Amado Nav -->
-            <nav class="amado-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href= "shop.html">Shop</a></li>
-                    <li><a href="product.html">Product</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li><a href= "checkout.html">Checkout</a></li>
-                    <li><a href="#" class="search-nav">Search</a>
-                </ul>
-            </nav>
-
-            <!-- Social Button -->
-            <div class="social-info d-flex justify-content-between">
-                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
-        </header>
-        <!-- Header Area End -->
-
-        <div class="shop_sidebar_area">
-
-            <!-- ##### Single Widget ##### -->
-            <div class="widget catagory mb-50">
-                <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Catagories</h6>
-
-              <!-- Catagories -->
-               <div class="catagories-menu">
-                   <ul>
-                       {% for category in categories %}
-                         {% if forloop.first %}
-                            <li class="nav-item">
-                                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-{{ category.slug }}">
-                                    <h6>{{ category.name }}</h6>
-                                </a>
-                            </li>
-                         {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-{{ category.slug }}">
-                                    <h6>{{ category.name }}</h6>
-                                </a>
-                            </li>
-                         {% endif %}
-                       {% endfor %}
-                   </ul>
-               </div>
-
-            </div>
-
-
-            <!-- ##### Single Widget ##### -->
-            <div class="widget price mb-50">
-                <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Price</h6>
-
-                <div class="widget-desc">
-                    <div class="slider-range">
-                        <div data-min="10" data-max="1000" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="10" data-value-max="1000" data-label-result="">
-                            <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                        </div>
-                        <div class="range-price">$10 - $1000</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="amado_product_area section-padding-100">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="product-topbar d-xl-flex align-items-end justify-content-between">
-                            <!-- Total Products -->
-                            <div class="total-products">
-                                <p>Showing 1-8 0f 25</p>
-                                <div class="view d-flex">
-                                    <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <!-- Sorting -->
-                            <div class="product-sorting d-flex">
-                                <div class="sort-by-date d-flex align-items-center mr-15">
-                                    <p>Sort by</p>
-                                    <form action="#" method="get">
-                                        <select name="select" id="sortBydate">
-                                            <option value="value">Date</option>
-                                            <option value="value">Newest</option>
-                                            <option value="value">Popular</option>
-                                        </select>
-                                    </form>
-                                </div>
-                                <div class="view-product d-flex align-items-center">
-                                    <p>View</p>
-                                    <form action="#" method="get">
-                                        <select name="select" id="viewProduct">
-                                            <option value="value">12</option>
-                                            <option value="value">24</option>
-                                            <option value="value">48</option>
-                                            <option value="value">96</option>
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="row">
-
-                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                     {% for product in products %}
-                         <div class="single-product-wrapper">
-                             <!-- Product Image -->
-                             <div class="product-img">
-                                 <img src="{{ product.image.url }}" alt="photo here">
-                                 <!-- Hover Thumb -->
-                                 <img class="hover-img" src="{{ product.image.url }}" alt="">
-                             </div>
-
-                             <!-- Product Description -->
-                             <div class="product-description d-flex align-items-center justify-content-between">
-                                 <!-- Product Meta Data -->
-                                 <div class="product-meta-data">
-                                     <div class="line"></div>
-                                     <p class="product-price">${{ product.price }}</p>
-                                     <a href="product.html">
-                                         <h6>{{ product.name }}</h6>
-                                     </a>
-                                 </div>
-                                 <div class="cart">
-                                     <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart">
-                                         <img src="img/core-img/cart.png" alt="">
-                                     </a>
-                                 </div>
-                             </div>
-                         </div>
-                       {% endfor %}
-                     </div>
-                 </div>
-{#                         {% include 'shop_single_produst_area.html' %}#}
-
-                 <div class="row">
-                    <div class="col-12">
-                        <!-- Pagination -->
-                        <nav aria-label="navigation">
-                            <ul class="pagination justify-content-end mt-50">
-                                <li class="page-item active"><a class="page-link" href="#">01.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">02.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">03.</a></li>
-                                <li class="page-item"><a class="page-link" href="#">04.</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-              </div>
+        <!-- Navbar Toggler -->
+        <div class="amado-navbar-toggler">
+            <span></span><span></span><span></span>
         </div>
     </div>
-    <!-- ##### Main Content Wrapper End ##### -->
+
+    <!-- Header Area Start -->
+    <header class="header-area clearfix">
+        <!-- Close Icon -->
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <a href=index.html"><img src="{% static "img/core-img/logo.png" %}" alt=""></a>
+        </div>
+        <!-- Amado Nav -->
+        <nav class="amado-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href= {% url "shop_html" %}>Shop</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="#" class="search-nav">Search</a>
+            </ul>
+        </nav>
+
+        <!-- Social Button -->
+        <div class="social-info d-flex justify-content-between">
+            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <div class="shop_sidebar_area">
+
+        <!-- ##### Single Widget ##### -->
+        <div class="widget catagory mb-50">
+            <!-- Widget Title -->
+            <h6 class="widget-title mb-30">Catagories</h6>
+
+            <!-- Catagories -->
+            <div class="catagories-menu">
+                <ul>
+                    {% for category in categories %}
+                        {% if forloop.first %}
+                            <li class="nav-item">
+                                <a class="nav-link active show" data-bs-toggle="tab"
+                                   data-bs-target="menu-{{ category.slug }}">
+                                    <h6>{{ category.name }}</h6>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" data-bs-target="menu-{{ category.slug }}">
+                                    <h6>{{ category.name }}</h6>
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+
+        <!-- ##### Single Widget ##### -->
+        <div class="widget price mb-50">
+            <!-- Widget Title -->
+            <h6 class="widget-title mb-30">Price</h6>
+
+            <div class="widget-desc">
+                <div class="slider-range">
+                    <div data-min="10" data-max="1000" data-unit="$"
+                         class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                         data-value-min="10" data-value-max="1000" data-label-result="">
+                        <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                        <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                    </div>
+                    <div class="range-price">$10 - $1000</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="amado_product_area section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-topbar d-xl-flex align-items-end justify-content-between">
+                        <!-- Total Products -->
+                        <div class="total-products">
+                            <p>Showing 1-8 0f 25</p>
+                            <div class="view d-flex">
+                                <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                        <!-- Sorting -->
+                        <div class="product-sorting d-flex">
+                            <div class="sort-by-date d-flex align-items-center mr-15">
+                                <p>Sort by</p>
+                                <form action="#" method="get">
+                                    <select name="select" id="sortBydate">
+                                        <option value="value">Date</option>
+                                        <option value="value">Newest</option>
+                                        <option value="value">Popular</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="view-product d-flex align-items-center">
+                                <p>View</p>
+                                <form action="#" method="get">
+                                    <select name="select" id="viewProduct">
+                                        <option value="value">12</option>
+                                        <option value="value">24</option>
+                                        <option value="value">48</option>
+                                        <option value="value">96</option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                    {% for category in categories_choise %}
+                        {#                     {% for product in products %}#}
+                        <div class="single-product-wrapper" id="menu-{{ category.slug }}">
+                            {% for product in category %}
+                                <!-- Product Image -->
+                                <div class="product-img">
+                                    <img src="{{ product.image.url }}" alt="photo here">
+                                    <!-- Hover Thumb -->
+                                    <img class="hover-img" src="{{ product.image.url }}" alt="">
+                                </div>
+
+                                <!-- Product Description -->
+                                <div class="product-description d-flex align-items-center justify-content-between">
+                                    <!-- Product Meta Data -->
+                                    <div class="product-meta-data">
+                                        <div class="line"></div>
+                                        <p class="product-price">${{ product.price }}</p>
+                                        <a href="{% url "product_html" %}">
+                                            <h6>{{ product.name }}</h6>
+                                        </a>
+                                    </div>
+                                    <div class="cart">
+                                        <a href="{% url "cart_html" %}" data-toggle="tooltip" data-placement="left"
+                                           title="Add to Cart">
+                                            <img src="{% static "img/core-img/cart.png" %}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+            {#                         {% include 'shop_single_produst_area.html' %}#}
+
+            <div class="row">
+                <div class="col-12">
+                    <!-- Pagination -->
+                    <nav aria-label="navigation">
+                        <ul class="pagination justify-content-end mt-50">
+                            <li class="page-item active"><a class="page-link" href="#">01.</a></li>
+                            <li class="page-item"><a class="page-link" href="#">02.</a></li>
+                            <li class="page-item"><a class="page-link" href="#">03.</a></li>
+                            <li class="page-item"><a class="page-link" href="#">04.</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Main Content Wrapper End ##### -->

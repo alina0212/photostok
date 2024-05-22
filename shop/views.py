@@ -10,5 +10,7 @@ def shop(request):
     return render(request, 'shop_content.html', context={
         'categories': categories,
         'products': products,
+        'categories_choise': [categories[0]],
+
     })
 # Create your views here.
