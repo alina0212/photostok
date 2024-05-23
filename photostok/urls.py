@@ -22,7 +22,7 @@ from cart.views import cart
 from checkout.views import checkout
 from photostok import settings
 from shop.views import shop
-from product.views import product
+from product.views import Product, product_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,8 +36,8 @@ urlpatterns = [
 
     path('shop/', shop, name='shop'),
     path('shop.html', shop, name='shop_html'),
-    path('product/', product, name='product'),
-    path('product.html', product, name='product_html')
+    path('product/', product_detail, name='product_detail'),
+    # path('product.html', Product, name='product_html')
 ]
 
 

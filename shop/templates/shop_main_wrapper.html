@@ -27,11 +27,11 @@
         <!-- Amado Nav -->
         <nav class="amado-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href= {% url "main_html" %}>Home</a></li>
                 <li class="active"><a href= {% url "shop_html" %}>Shop</a></li>
                 <li><a href="product.html">Product</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href= {% url "cart_html" %}>Cart</a></li>
+                <li><a href= {% url "checkout_html" %}>Checkout</a></li>
                 <li><a href="#" class="search-nav">Search</a>
             </ul>
         </nav>
@@ -139,44 +139,8 @@
                 </div>
             </div>
 
-            <div class="row">
 
-                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                    {% for category in categories_choice %}
-                        {#                     {% for product in products %}#}
-                        <div class="single-product-wrapper" id="menu-{{ category.slug }}">
-                            {% for product in category %}
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="{{ product.image.url }}" alt="photo here">
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="{{ product.image.url }}" alt="">
-                                </div>
-
-                                <!-- Product Description -->
-                                <div class="product-description d-flex align-items-center justify-content-between">
-                                    <!-- Product Meta Data -->
-                                    <div class="product-meta-data">
-                                        <div class="line"></div>
-                                        <p class="product-price">${{ product.price }}</p>
-                                        <a href="{% url "product_html" %}">
-                                            <h6>{{ product.name }}</h6>
-                                        </a>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="{% url "cart_html" %}" data-toggle="tooltip" data-placement="left"
-                                           title="Add to Cart">
-                                            <img src="{% static "img/core-img/cart.png" %}" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-
-                    {% endfor %}
-                </div>
-            </div>
-            {#                         {% include 'shop_single_produst_area.html' %}#}
+            {% include 'shop_single_produst_area.html' %}
 
             <div class="row">
                 <div class="col-12">
