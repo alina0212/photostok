@@ -9,7 +9,7 @@ def shop(request):
     products = Product.objects.filter(is_visible=True)
     form = PriceFilterForm(request.GET or None)
     all_products = Product.objects.filter(is_visible=True)
-    total_products = all_products.count()  # Загальна кількість всіх продуктів у всіх категоріях
+    total_products = all_products.count()
 
     print("Initial products count:", products.count())  # Debugging line
 
