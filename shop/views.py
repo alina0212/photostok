@@ -33,7 +33,7 @@ def shop(request):
     else:
         categories_choice = [categories.first()] if categories else []
 
-    displayed_products_count = products.count()  # Кількість продуктів, які відображаються після фільтрації
+    displayed_products_count = products.count()  # after filter
 
     return render(request, 'shop_content.html', {
         'categories': categories,

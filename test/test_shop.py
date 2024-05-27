@@ -21,17 +21,17 @@ def setup_data(db):
 def test_filter_by_category(client, setup_data):
     category1, category2, product1, product2, product3, product4 = setup_data
 
-    # Використовуємо slug категорії для фільтрації
-    url = reverse('shop_html')  # Переконайтеся, що це вірний URL для вашої функції shop
+    # Use category slug for filtering
+    url = reverse('shop_html')  # Ensure this is the correct URL for your shop view
     response = client.get(url, {'category': category1.slug})
     assert response.status_code == 200
 
     content = response.content.decode()
 
-    # Переконуємося, що вміст містить продукти тільки з категорії 1
+    # Ensure the content contains products only from category 1
     assert "Product 1" in content
     assert "Product 2" in content
-    # Переконуємося, що продукти з категорії 2 не відображаються
+    # Ensure products from category 2 are not displayed
     assert "Product 3" not in content
     assert "Product 4" not in content
 
@@ -40,16 +40,35 @@ def test_filter_by_category(client, setup_data):
 def test_filter_by_min_price(client, setup_data):
     category1, category2, product1, product2, product3, product4 = setup_data
 
-    # Використовуємо min_price для фільтрації
-    url = reverse('shop_html')  # Переконайтеся, що це вірний URL для вашої функції shop
-    response = client.get(url, {'min_price': 100})
+    # Use min_price for filtering
+    url = reverse('shop_html')
+    response = client.get(url, {'min_price': 200})
+    assert response.status_code == 200
+
+    content = response.content.decode()
+    # Ensure the content contains products with price greater than or equal to 100
+    assert "Product 4" in content
+    assert "Product 3" in content
+    # Ensure products with price less than 100 are not displayed
+    assert "Product 1" not in content
+    assert "Product 2" not in content
+
+
+
+@pytest.mark.django_db
+def test_filter_by_max_price(client, setup_data):
+    category1, category2, product1, product2, product3, product4 = setup_data
+
+    # Use max_price for filtering
+    url = reverse('shop_html')
+    response = client.get(url, {'max_price': 200})
     assert response.status_code == 200
 
     content = response.content.decode()
     print(content)
-    # Переконуємося, що вміст містить продукти з ціною вище або рівною 100
+    # Ensure the content contains products with price less than or equal to 200
+    assert "Product 1" in content
     assert "Product 2" in content
-    assert "Product 3" in content
-    assert "Product 4" in content
-    # Переконуємося, що продукти з ціною нижче 100 не відображаються
-    assert "Product 1" not in content
+    # Ensure products with price greater than 200 are not displayed
+    assert "Product 3" not in content
+    assert "Product 4" not in content
