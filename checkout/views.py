@@ -2,6 +2,7 @@ import os
 import zipfile
 from django.http import HttpResponse
 from django.conf import settings
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.sessions.models import Session
 from cart.models import Cart
@@ -22,7 +23,7 @@ def checkout(request):
         form = CheckoutForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('checkout_process')
+            return
     else:
         form = CheckoutForm()
 
@@ -34,7 +35,7 @@ def checkout(request):
     return render(request, 'checkout_content.html', context)
 
 
-def checkout_process(request):
+def create_zip(request):
     session_key = request.session.session_key
     session = Session.objects.get(session_key=session_key)
     cart, created = Cart.objects.get_or_create(session=session)
@@ -55,5 +56,3 @@ def checkout_process(request):
     cart.calculate_price()
 
     return response
-
-

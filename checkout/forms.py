@@ -9,24 +9,20 @@ class CheckoutForm(forms.ModelForm):
         widgets = {
             'f_name': forms.TextInput(attrs={'class': 'form-control',
                                              'id': 'first_name',
-                                             'value': '',
-                                             'placeholder': 'First Name'}),
+                                             'value': ''}),
             'l_name': forms.TextInput(attrs={'class': 'form-control',
                                              'id': 'last_name',
-                                             'value': '',
-                                             'placeholder': 'Last Name'}),
+                                             'value': ''}),
             'company_name': forms.TextInput(attrs={'class': 'form-control',
                                                    'id': 'company',
-                                                   'value': '',
-                                                   'placeholder': 'Company Name (if you are)'}),
+                                                   'value': ''
+                                                   }),
             'email': forms.EmailInput(attrs={'class': 'form-control',
                                              'id': 'email',
-                                             'value': '',
-                                             'placeholder': 'Email'}),
+                                             'value': ''}),
             'phone': forms.TextInput(attrs={'class': 'form-control',
                                             'id': 'phone_number',
                                             'value': '',
-                                            'placeholder': 'Phone No',
                                             'min': '0'})
 
         }
