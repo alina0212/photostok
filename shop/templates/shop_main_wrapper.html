@@ -16,7 +16,7 @@
 
     <!-- Header Area Start -->
     <header class="header-area clearfix">
-          <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <!-- Close Icon -->
         <div class="nav-close">
             <i class="fa fa-close" aria-hidden="true"></i>
@@ -30,7 +30,6 @@
             <ul>
                 <li><a href= {% url "main_html" %}>Home</a></li>
                 <li class="active"><a href= {% url "shop_html" %}>Shop</a></li>
-                <li><a href="product.html">Product</a></li>
                 <li><a href= {% url "cart_html" %}>Cart</a></li>
                 <li><a href= {% url "checkout_html" %}>Checkout</a></li>
                 <li><a href="#" class="search-nav">Search</a>
@@ -39,10 +38,11 @@
 
         <!-- Social Button -->
         <div class="social-info d-flex justify-content-between">
-            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/watch?v=0w6gEFclvh8"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/le_photostudio/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/yellow.rabbit.photostudio?locale=uk_UA"><i class="fa fa-facebook"
+                                                                                         aria-hidden="true"></i></a>
+            <a href="https://x.com/MagnumPhotos"><i class="fa fa-twitter" aria-hidden="true"></i></a>
         </div>
     </header>
     <!-- Header Area End -->
@@ -87,7 +87,7 @@
 
             <div class="widget-desc">
                 <!-- Price Filter Form -->
-               <form method="get" action="{% url 'shop_html' %}" class="price-filter-form">
+                <form method="get" action="{% url 'shop_html' %}" class="price-filter-form">
                     <input type="hidden" name="category" value="{{ request.GET.category }}">
                     <input type="number" name="min_price" placeholder="Min Price" value="{{ request.GET.min_price }}"
                            class="slider-range-input">
@@ -114,16 +114,16 @@
                             </div>
                         </div>
 
-                        </div>
                     </div>
                 </div>
             </div>
-
-
-            {% include 'shop_single_produst_area.html' %}
-
         </div>
+
+
+        {% include 'shop_single_produst_area.html' %}
+
     </div>
+</div>
 </div>
 
 <!-- ##### Main Content Wrapper End ##### -->

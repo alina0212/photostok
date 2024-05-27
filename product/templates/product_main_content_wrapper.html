@@ -1,6 +1,6 @@
 {% load static %}
 {% if product %}
-<!-- ##### Main Content Wrapper Start ##### -->
+    <!-- ##### Main Content Wrapper Start ##### -->
     <div class="main-content-wrapper d-flex clearfix">
 
         <!-- Mobile Nav (max width 767px)-->
@@ -39,10 +39,12 @@
 
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">
-                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="https://www.youtube.com/watch?v=0w6gEFclvh8"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/le_photostudio/"><i class="fa fa-instagram"
+                                                                       aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/yellow.rabbit.photostudio?locale=uk_UA"><i class="fa fa-facebook"
+                                                                                             aria-hidden="true"></i></a>
+                <a href="https://x.com/MagnumPhotos"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             </div>
         </header>
         <!-- Header Area End -->
@@ -69,11 +71,14 @@
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url('{{ product.image.url }}')">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0"
+                                        style="background-image: url('{{ product.image.url }}')">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url('{{ product.image.url }}')">
+                                    <li data-target="#product_details_slider" data-slide-to="1"
+                                        style="background-image: url('{{ product.image.url }}')">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url('{{ product.image.url }}')">
+                                    <li data-target="#product_details_slider" data-slide-to="2"
+                                        style="background-image: url('{{ product.image.url }}')">
                                     </li>
                                 </ol>
 
@@ -112,7 +117,8 @@
                             <!-- Add to Cart Form -->
                             <form class="cart clearfix" method="post" action="{% url 'add_to_cart' product.id %}">
                                 {% csrf_token %}
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart
+                                </button>
                             </form>
 
                         </div>
