@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from main.views import main
 from cart.views import cart, add_to_cart, remove_from_cart
-from checkout.views import checkout
+from checkout.views import checkout, checkout_process
 from photostok import settings
 from shop.views import shop
 from product.views import Product, product_detail
@@ -36,6 +36,8 @@ urlpatterns = [
 
     path('checkout/', checkout, name='checkout'),
     path('checkout.html', checkout, name='checkout_html'),
+    path('checkout_process/', checkout_process, name='checkout_process'),
+    # path('checkout_success/', checkout_success, name='checkout_success'),
 
     path('shop/', shop, name='shop'),
     path('shop.html', shop, name='shop_html'),

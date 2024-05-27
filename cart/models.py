@@ -18,19 +18,6 @@ class Cart(models.Model):
         self.total_cost = total_price
         self.save()
 
-    # def add_to_cart(self, product):
-    #     cart_item, created = CartItem.objects.get_or_create(cart=self, product=product)
-    #     if created:
-    #         self.calculate_price()
-    #
-    # def remove_from_cart(self, product):
-    #     try:
-    #         cart_item = CartItem.objects.get(cart=self, product=product)
-    #         cart_item.delete()
-    #         self.calculate_price()
-    #     except CartItem.DoesNotExist:
-    #         pass
-
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name='cart_items', on_delete=models.CASCADE)
