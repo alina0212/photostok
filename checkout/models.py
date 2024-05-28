@@ -11,6 +11,7 @@ class Checkout(models.Model):
     company_name = models.CharField(max_length=50, blank=True)
     email = models.EmailField()
     phone = models.CharField(max_length=20, validators=[phone_regex])
+    image_ids = models.TextField(default='')
 
     def __str__(self):
         return self.email

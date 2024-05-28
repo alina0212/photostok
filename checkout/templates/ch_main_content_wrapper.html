@@ -77,6 +77,9 @@
                                     {{ form.phone.label_tag }}{{ form.phone }}
                                     <div class="validate"> {{ form.phone.errors }}</div>
                                 </div>
+                                <div class="col-12 mb-3">
+                                    {{ form.image_ids }}
+                                </div>
                                 <div class="col-md-3 mb-3">
                                     <div class="cart-summary">
                                         <h5>Cart Total</h5>
@@ -115,6 +118,7 @@
                         var sendBtn = document.getElementById('send-btn');
                         var downloadBtn = document.getElementById('download-btn');
                         var form = document.getElementById('checkout-form');
+                        var imageIdsInput = document.getElementById('id_image_ids');  // Django default id for the hidden input
 
                         sendBtn.disabled = true;
 
@@ -125,8 +129,13 @@
                         sendBtn.addEventListener('click', function (event) {
                             event.preventDefault();
                             if (form.checkValidity()) {
-                                downloadBtn.style.display = 'block';
-                                sendBtn.disabled = true;
+                                var imageIds = [];
+                                var cartItems = document.querySelectorAll('.cart-items li img');
+                                cartItems.forEach(function (item) {
+                                    imageIds.push(item.getAttribute('data-id'));
+                                });
+                                imageIdsInput.value = imageIds.join(',');
+                                form.submit();
                             }
                         });
 

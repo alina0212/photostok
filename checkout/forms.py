@@ -23,7 +23,8 @@ class CheckoutForm(forms.ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-control',
                                             'id': 'phone_number',
                                             'value': '',
-                                            'min': '0'})
+                                            'min': '0'}),
+            'image_ids': forms.HiddenInput()
 
         }
 
