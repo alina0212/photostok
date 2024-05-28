@@ -77,7 +77,7 @@
                                     {{ form.phone.label_tag }}{{ form.phone }}
                                     <div class="validate"> {{ form.phone.errors }}</div>
                                 </div>
-                                <div class="col-12 mb-3">
+                                <div class="col-12 mb-3" style="display: none;">
                                     {{ form.image_ids }}
                                 </div>
                                 <div class="col-md-3 mb-3">
@@ -120,22 +120,19 @@
                         var form = document.getElementById('checkout-form');
                         var imageIdsInput = document.getElementById('id_image_ids');  // Django default id for the hidden input
 
-                        sendBtn.disabled = true;
-
+                        // Перевірка, чи є форма валідною при будь-якому введенні користувача
                         form.addEventListener('input', function () {
                             sendBtn.disabled = !form.checkValidity();
                         });
 
                         sendBtn.addEventListener('click', function (event) {
-                            event.preventDefault();
-                            if (form.checkValidity()) {
-                                var imageIds = [];
-                                var cartItems = document.querySelectorAll('.cart-items li img');
-                                cartItems.forEach(function (item) {
-                                    imageIds.push(item.getAttribute('data-id'));
-                                });
-                                imageIdsInput.value = imageIds.join(',');
-                                form.submit();
+                            // Якщо форма не валідна, зупиняємо подальше виконання
+                            if (!form.checkValidity()) {
+                                event.preventDefault();
+                                form.reportValidity(); // Це забезпечить візуальну індикацію помилок
+                            } else {
+                                downloadBtn.style.display = 'block';
+                                sendBtn.disabled = true;
                             }
                         });
 
@@ -153,14 +150,28 @@
                                     link.download = "filename.zip";
                                     link.click();
 
-                                    window.location.reload();
+                                    // Після завершення завантаження файлу відправляємо форму
+                                    sendForm();
                                 }
                             };
 
                             xhr.send();
                         });
+
+                        function sendForm() {
+                            var imageIds = [];
+                            var cartItems = document.querySelectorAll('.cart-items li img');
+                            cartItems.forEach(function (item) {
+                                imageIds.push(item.getAttribute('data-id'));
+                            });
+                            imageIdsInput.value = imageIds.join(',');
+
+                            // Відправляємо форму
+                            form.submit();
+                        }
                     });
                 </script>
+
             </div>
         </div>
     </div>

@@ -24,8 +24,8 @@ def checkout(request):
         form = CheckoutForm(request.POST)
         if form.is_valid():
             checkout_instance = form.save(commit=False)
-            image_ids = ",".join([str(item.product.id) for item in cart.cart_items.all()])
-            checkout_instance.image_ids = image_ids
+            image_ids = [str(item.product.id) for item in cart.cart_items.all()]
+            checkout_instance.image_ids = ",".join(image_ids)
             checkout_instance.save()
             return redirect('checkout')
 
