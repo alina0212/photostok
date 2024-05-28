@@ -54,7 +54,6 @@ def test_filter_by_min_price(client, setup_data):
     assert "Product 2" not in content
 
 
-
 @pytest.mark.django_db
 def test_filter_by_max_price(client, setup_data):
     category1, category2, product1, product2, product3, product4 = setup_data
