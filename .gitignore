@@ -399,4 +399,8 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
+#igrore all image in products
+media/products/*.jpg
+
+
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm,django,java
