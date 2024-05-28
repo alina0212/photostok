@@ -4,7 +4,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=100)
     sort = models.IntegerField(default=0)
-    slug = models.SlugField(max_length=50, default='default-slug')  # Додано поле slug
+    slug = models.SlugField(max_length=50, default='default-slug')
 
     def __iter__(self):
         for product in self.products.filter(is_visible=True):
@@ -14,4 +14,4 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        ordering = ('sort', 'name')  # Сортування за полем sort, потім за полем name
+        ordering = ('sort', 'name')  # sort first on sorting, then name

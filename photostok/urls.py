@@ -42,7 +42,6 @@ urlpatterns = [
     path('shop/', shop, name='shop'),
     path('shop.html', shop, name='shop_html'),
     path('product/', product_detail, name='product_detail'),
-    # path('product.html', Product, name='product_html')
 
 ]
 
