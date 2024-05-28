@@ -21,8 +21,9 @@ from main.views import main
 from cart.views import cart, add_to_cart, remove_from_cart
 from checkout.views import checkout, create_zip
 from photostok import settings
-from shop.views import shop
+from shop.views import shop, search_view
 from product.views import Product, product_detail
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,6 +43,7 @@ urlpatterns = [
     path('shop/', shop, name='shop'),
     path('shop.html', shop, name='shop_html'),
     path('product/', product_detail, name='product_detail'),
+    path('search/', search_view, name='search_view'),
 
 ]
 

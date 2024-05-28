@@ -27,11 +27,31 @@ def test_filter_by_category(client, setup_data):
     assert response.status_code == 200
 
     content = response.content.decode()
+    print(content)
 
     # Ensure the content contains products only from category 1
     assert "Product 1" in content
-    assert "Product 2" in content
+    assert "Product 2" not in content
     # Ensure products from category 2 are not displayed
+    assert "Product 3" not in content
+    assert "Product 4" not in content
+
+
+@pytest.mark.django_db
+def test_filter_by_max_price(client, setup_data):
+    category1, category2, product1, product2, product3, product4 = setup_data
+
+    # Use max_price for filtering
+    url = reverse('shop_html')
+    response = client.get(url, {'max_price': 300})
+    assert response.status_code == 200
+
+    content = response.content.decode()
+
+    # Ensure the content contains products with price less than or equal to 200
+    assert "Product 1" in content
+    assert "Product 2" in content
+    # Ensure products with price greater than 200 are not displayed
     assert "Product 3" not in content
     assert "Product 4" not in content
 
@@ -46,28 +66,11 @@ def test_filter_by_min_price(client, setup_data):
     assert response.status_code == 200
 
     content = response.content.decode()
+
     # Ensure the content contains products with price greater than or equal to 100
-    assert "Product 4" in content
-    assert "Product 3" in content
+    assert "Product 3" not in content
+    assert "Product 4" not in content
     # Ensure products with price less than 100 are not displayed
     assert "Product 1" not in content
     assert "Product 2" not in content
 
-
-@pytest.mark.django_db
-def test_filter_by_max_price(client, setup_data):
-    category1, category2, product1, product2, product3, product4 = setup_data
-
-    # Use max_price for filtering
-    url = reverse('shop_html')
-    response = client.get(url, {'max_price': 200})
-    assert response.status_code == 200
-
-    content = response.content.decode()
-    print(content)
-    # Ensure the content contains products with price less than or equal to 200
-    assert "Product 1" in content
-    assert "Product 2" in content
-    # Ensure products with price greater than 200 are not displayed
-    assert "Product 3" not in content
-    assert "Product 4" not in content

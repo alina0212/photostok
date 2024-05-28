@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Category
 from product.models import Product
 from .forms import PriceFilterForm
+from .forms import SearchForm
 
 
 def shop(request):
@@ -43,3 +44,12 @@ def shop(request):
         'total_products': total_products,
         'displayed_products_count': displayed_products_count
     })
+
+
+def search_view(request):
+    form = SearchForm(request.GET)
+    products = []
+    if form.is_valid():
+        search_query = form.cleaned_data['search']
+        products = Product.objects.filter(name__icontains=search_query)
+    return render(request, 'shop_search_wrapper.html', {'form': form, 'products': products})

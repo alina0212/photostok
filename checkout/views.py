@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.sessions.models import Session
 from cart.models import Cart
 from .forms import CheckoutForm
+from django.contrib import messages
 
 
 def checkout(request):
@@ -22,8 +23,12 @@ def checkout(request):
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
         if form.is_valid():
-            form.save()
-            return
+            checkout_instance = form.save(commit=False)
+            image_ids = ",".join([str(item.product.id) for item in cart.cart_items.all()])
+            checkout_instance.image_ids = image_ids
+            checkout_instance.save()
+            return redirect('checkout')
+
     else:
         form = CheckoutForm()
 
