@@ -1,109 +1,106 @@
 {% load static %}
 <div class="main-content-wrapper d-flex clearfix">
 
-        <!-- Mobile Nav (max width 767px)-->
-        <div class="mobile-nav">
-            <!-- Navbar Brand -->
-            <div class="amado-navbar-brand">
-                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-            </div>
-            <!-- Navbar Toggler -->
-            <div class="amado-navbar-toggler">
-                <span></span><span></span><span></span>
-            </div>
+    <!-- Mobile Nav (max width 767px)-->
+    <div class="mobile-nav">
+        <!-- Navbar Brand -->
+        <div class="amado-navbar-brand">
+            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
         </div>
+        <!-- Navbar Toggler -->
+        <div class="amado-navbar-toggler">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
 
-        <!-- Header Area Start -->
-        <header class="header-area clearfix">
-            <!-- Close Icon -->
-            <div class="nav-close">
-                <i class="fa fa-close" aria-hidden="true"></i>
-            </div>
-            <!-- Logo -->
-            <div class="logo">
-                <a href={% url "main_html" %}><img src="img/core-img/logo.png" alt=""></a>
-            </div>
-            <!-- Amado Nav -->
-            <nav class="amado-nav">
-                <ul>
-                    <li><a href= {% url "main_html" %}>Home</a></li>
-                    <li><a href= {% url "shop_html" %}>Shop</a></li>
-                    <li><a href= {% url "product_detail" %}>Product</a></li>
-                    <li class="active"><a href={% url "cart_html" %}>Cart</a></li>
-                    <li><a href= {% url "checkout_html" %}>Checkout</a></li>
-                    <li><a href="#" class="search-nav">Search</a>
-                </ul>
-            </nav>
+    <!-- Header Area Start -->
+    <header class="header-area clearfix">
+        <!-- Close Icon -->
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <a href={% url "main_html" %}><img src="img/core-img/logo.png" alt=""></a>
+        </div>
+        <!-- Amado Nav -->
+        <nav class="amado-nav">
+            <ul>
+                <li><a href= {% url "main_html" %}>Home</a></li>
+                <li><a href= {% url "shop_html" %}>Shop</a></li>
+                <li class="active"><a href={% url "cart_html" %}>Cart</a></li>
+                <li><a href= {% url "checkout_html" %}>Checkout</a></li>
+                <li><a href="#" class="search-nav">Search</a>
+            </ul>
+        </nav>
 
-            <!-- Social Button -->
-            <div class="social-info d-flex justify-content-between">
-                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
-        </header>
-        <!-- Header Area End -->
+        <!-- Social Button -->
+        <div class="social-info d-flex justify-content-between">
+            <a href="https://www.youtube.com/watch?v=0w6gEFclvh8"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/le_photostudio/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/yellow.rabbit.photostudio?locale=uk_UA"><i class="fa fa-facebook"
+                                                                                         aria-hidden="true"></i></a>
+            <a href="https://x.com/MagnumPhotos"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </header>
+    <!-- Header Area End -->
 
-        <div class="cart-table-area section-padding-100">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-lg-8">
-                        <div class="cart-title mt-50">
-                            <h2>Shopping Cart</h2>
-                        </div>
-                        <div class="cart-table clearfix">
-                            <table class="table table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for item in cart_items %}
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="{{ item.product.image.url }}" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>{{ item.product.name }}</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>{{ item.product.price }}</span>
-                                        </td>
-                                        <td>
-                                            <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button class="btn amado-btn w-100" type="submit">Remove</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    {% empty %}
-                                    <tr>
-                                        <td colspan="4">Your cart is empty</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
+    <div class="cart-table-area section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="cart-title mt-50">
+                        <h2>Shopping Cart</h2>
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="cart-summary">
-                            <h5>Cart Total</h5>
-                            <ul class="summary-table">
-                                <li><span>Total:</span> <span>${{ total_price }}</span></li>
-                            </ul>
-                            <div class="cart-btn mt-100">
-                                <a href="{% url 'checkout' %}" class="btn amado-btn w-100">Checkout</a>
-                            </div>
-                        </div>
+                    <div class="cart-table clearfix">
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in cart_items %}
+                                <tr>
+                                    <td class="cart_product_img">
+                                        <a href="#"><img src="{{ item.product.image.url }}" alt="Product"></a>
+                                    </td>
+                                    <td class="cart_product_desc">
+                                        <h5>{{ item.product.name }}</h5>
+                                    </td>
+                                    <td class="price">
+                                        <span>{{ item.product.price }}</span>
+                                    </td>
+                                    <td>
+                                        <form action="{% url 'remove_from_cart' item.product.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button class="btn amado-btn w-100" type="submit">Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4">Your cart is empty</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="cart-summary">
+                        <h5>Cart Total</h5>
+                        <ul class="summary-table">
+                            <li><span>Total:</span> <span>${{ total_price }}</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -1,97 +1,158 @@
+{% load static %}
 <!-- ##### Main Content Wrapper Start ##### -->
-    <div class="main-content-wrapper d-flex clearfix">
-
-        <!-- Mobile Nav (max width 767px)-->
-        <div class="mobile-nav">
-            <!-- Navbar Brand -->
-            <div class="amado-navbar-brand">
-                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-            </div>
-            <!-- Navbar Toggler -->
-            <div class="amado-navbar-toggler">
-                <span></span><span></span><span></span>
-            </div>
+<div class="main-content-wrapper d-flex clearfix">
+    <!-- Mobile Nav (max width 767px)-->
+    <div class="mobile-nav">
+        <!-- Navbar Brand -->
+        <div class="amado-navbar-brand">
+            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
         </div>
+        <!-- Navbar Toggler -->
+        <div class="amado-navbar-toggler">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
 
-        <!-- Header Area Start -->
-        <header class="header-area clearfix">
-            <!-- Close Icon -->
-            <div class="nav-close">
-                <i class="fa fa-close" aria-hidden="true"></i>
-            </div>
-            <!-- Logo -->
-            <div class="logo">
-                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-            </div>
-            <!-- Amado Nav -->
-            <nav class="amado-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="product.html">Product</a></li>
-                    <li><a href="cart.html">Cart</a></li>
-                    <li class="active"><a href="checkout.html">Checkout</a></li>
-                    <li><a href="#" class="search-nav">Search</a>
-                </ul>
-            </nav>
+    <!-- Header Area Start -->
+    <header class="header-area clearfix">
+        <!-- Close Icon -->
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+        </div>
+        <!-- Amado Nav -->
+        <nav class="amado-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li class="active"><a href="checkout.html">Checkout</a></li>
+                <li><a href="#" class="search-nav">Search</a></li>
+            </ul>
+        </nav>
 
-            <!-- Social Button -->
-            <div class="social-info d-flex justify-content-between">
-                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            </div>
-        </header>
-        <!-- Header Area End -->
+        <!-- Social Button -->
+        <div class="social-info d-flex justify-content-between">
+            <a href="https://www.youtube.com/watch?v=0w6gEFclvh8"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/le_photostudio/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/yellow.rabbit.photostudio?locale=uk_UA"><i class="fa fa-facebook"
+                                                                                         aria-hidden="true"></i></a>
+            <a href="https://x.com/MagnumPhotos"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </header>
+    <!-- Header Area End -->
 
-        <div class="cart-table-area section-padding-100">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-lg-8">
-                        <div class="checkout_details_area mt-50 clearfix">
+    <div class="cart-table-area section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="checkout_details_area mt-50 clearfix">
 
-                            <div class="cart-title">
-                                <h2>Checkout</h2>
-                            </div>
+                        <div class="cart-title">
+                            <h2>Checkout</h2>
+                        </div>
 
-                            <form action="#" method="post">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="first_name" value="" placeholder="First Name" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <input type="text" class="form-control" id="last_name" value="" placeholder="Last Name" required>
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="text" class="form-control" id="company" placeholder="Company Name (if you are)" value="">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <input type="email" class="form-control" id="email" placeholder="Email" value="">
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <input type="number" class="form-control" id="phone_number" min="0" placeholder="Phone No" value="">
-                                    </div>
-
+                        <form id="checkout-form" method="post" action="{% url 'checkout' %}" role="form">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.f_name.label_tag }}{{ form.f_name }}
+                                    <div class="validate"> {{ form.f_name.errors }}</div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <div class="cart-summary">
-                            <h5>Cart Total</h5>
-                            <ul class="summary-table">
-                                <li><span>total:</span> <span>$</span></li>
-                            </ul>
-
-                            <div class="cart-btn mt-100">
-                                <a href="#" class="btn amado-btn w-100">Checkout</a>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.l_name.label_tag }}{{ form.l_name }}
+                                    <div class="validate"> {{ form.l_name.errors }}</div>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    {{ form.company_name.label_tag }}{{ form.company_name }}
+                                </div>
+                                <div class="col-6 mb-3">
+                                    {{ form.email.label_tag }}{{ form.email }}
+                                    <div class="validate"> {{ form.email.errors }}</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.phone.label_tag }}{{ form.phone }}
+                                    <div class="validate"> {{ form.phone.errors }}</div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="cart-summary">
+                                        <h5>Cart Total</h5>
+                                        <ul class="summary-table">
+                                            <li><span>Total:</span> <span>${{ total_price }}</span></li>
+                                        </ul>
+                                        {% if total_price != 0 %}
+                                            <button id="send-btn" type="submit" class="btn amado-btn w-100">Send
+                                            </button>
+                                            <button id="download-btn" style="display: none;" type="submit"
+                                                    class="btn amado-btn w-100">Download
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="cart-items mt-50">
+                        <h5>Cart Items</h5>
+                        <ul>
+                            {% for item in cart.cart_items.all %}
+                                <li>
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="150">
+                                    <span>{{ item.product.name }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var sendBtn = document.getElementById('send-btn');
+                        var downloadBtn = document.getElementById('download-btn');
+                        var form = document.getElementById('checkout-form');
+
+                        sendBtn.disabled = true;
+
+                        form.addEventListener('input', function () {
+                            sendBtn.disabled = !form.checkValidity();
+                        });
+
+                        sendBtn.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            if (form.checkValidity()) {
+                                downloadBtn.style.display = 'block';
+                                sendBtn.disabled = true;
+                            }
+                        });
+
+                        downloadBtn.addEventListener('click', function (event) {
+                            event.preventDefault();
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("GET", "{% url 'create_zip' %}", true);
+                            xhr.responseType = "blob";
+
+                            xhr.onload = function (e) {
+                                if (this.status === 200) {
+                                    var blob = this.response;
+                                    var link = document.createElement('a');
+                                    link.href = window.URL.createObjectURL(blob);
+                                    link.download = "filename.zip";
+                                    link.click();
+
+                                    window.location.reload();
+                                }
+                            };
+
+                            xhr.send();
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>
-    <!-- ##### Main Content Wrapper End ##### -->
+</div>
