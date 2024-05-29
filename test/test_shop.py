@@ -31,7 +31,7 @@ def test_filter_by_category(client, setup_data):
 
     # Ensure the content contains products only from category 1
     assert "Product 1" in content
-    assert "Product 2" not in content
+    assert "Product 2" in content
     # Ensure products from category 2 are not displayed
     assert "Product 3" not in content
     assert "Product 4" not in content
@@ -46,14 +46,14 @@ def test_filter_by_max_price(client, setup_data):
     response = client.get(url, {'max_price': 300})
     assert response.status_code == 200
 
-    content = response.content.decode()
+    content1 = response.content.decode()
 
     # Ensure the content contains products with price less than or equal to 200
-    assert "Product 1" in content
-    assert "Product 2" in content
+    assert "Product 1" in content1
+    assert "Product 2" in content1
     # Ensure products with price greater than 200 are not displayed
-    assert "Product 3" not in content
-    assert "Product 4" not in content
+    assert "Product 3" not in content1
+    assert "Product 4" not in content1
 
 
 @pytest.mark.django_db
@@ -65,12 +65,12 @@ def test_filter_by_min_price(client, setup_data):
     response = client.get(url, {'min_price': 200})
     assert response.status_code == 200
 
-    content = response.content.decode()
+    content2 = response.content.decode()
 
     # Ensure the content contains products with price greater than or equal to 100
-    assert "Product 3" not in content
-    assert "Product 4" not in content
+    assert "Product 3" in content2
+    assert "Product 4" in content2
     # Ensure products with price less than 100 are not displayed
-    assert "Product 1" not in content
-    assert "Product 2" not in content
+    assert "Product 1" not in content2
+    assert "Product 2" not in content2
 
