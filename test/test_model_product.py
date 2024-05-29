@@ -4,14 +4,20 @@ from shop.models import Category
 from product.models import Product
 from decimal import Decimal
 
+
 @pytest.fixture
 def category(db):
     return Category.objects.create(name="Photography", slug="photography")
 
+
 @pytest.mark.parametrize("name, slug, description, price, is_visible, sort, image_content", [
-    ("Landscape Photo", "landscape-photo", "Beautiful landscape photo of mountains", Decimal('150.00'), True, 10, b'fake landscape data'),
-    ("City Nightlife Photo", "city-nightlife", "Vibrant nightlife of the city captured in this photo", Decimal('200.00'), True, 20, b'fake city nightlife data'),
-    ("Portrait Photo", "portrait-photo", "Professional portrait photo with blurred background", Decimal('175.00'), True, 30, b'fake portrait data')
+    ("Landscape Photo", "landscape-photo", "Beautiful landscape photo of mountains", Decimal('150.00'), True, 10,
+     b'fake landscape data'),
+    (
+    "City Nightlife Photo", "city-nightlife", "Vibrant nightlife of the city captured in this photo", Decimal('200.00'),
+    True, 20, b'fake city nightlife data'),
+    ("Portrait Photo", "portrait-photo", "Professional portrait photo with blurred background", Decimal('175.00'), True,
+     30, b'fake portrait data')
 ])
 @pytest.mark.django_db
 def test_create_photo_product(category, name, slug, description, price, is_visible, sort, image_content):

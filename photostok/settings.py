@@ -56,6 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'photostok.urls'
+APPEND_SLASH = False
 
 TEMPLATES = [
     {

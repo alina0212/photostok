@@ -16,13 +16,20 @@ def shop(request):
 
     if form.is_valid():
         print("Form is valid")  # Debugging line
-        min_price = form.cleaned_data.get('min_price')
-        max_price = form.cleaned_data.get('max_price')
-        if min_price is not None:
-            products = products.filter(price__gte=min_price)
-        if max_price is not None:
-            products = products.filter(price__lte=max_price)
-        print("Filtered products count:", products.count())  # Debugging line
+        search = request.GET.get('search', None)
+        print("search:", search)
+        if search is not None:
+            print("old products count:", products.count())
+            products = products.filter(name__icontains=search)
+            print("new products count:", products.count())
+        else:
+            min_price = form.cleaned_data.get('min_price')
+            max_price = form.cleaned_data.get('max_price')
+            if min_price is not None:
+                products = products.filter(price__gte=min_price)
+            if max_price is not None:
+                products = products.filter(price__lte=max_price)
+            print("Filtered products count:", products.count())  # Debugging line
     else:
         print("Form is not valid", form.errors)  # Debugging line
 

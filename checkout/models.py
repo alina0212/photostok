@@ -9,7 +9,6 @@ class Checkout(models.Model):
                                  message="Wrong phone number format. '+380....'")
     f_name = models.CharField(max_length=20)
     l_name = models.CharField(max_length=20)
-    slug = models.SlugField(max_length=50)
     company_name = models.CharField(max_length=50, blank=True)
     email = models.EmailField()
     phone = models.CharField(max_length=20, validators=[phone_regex])
