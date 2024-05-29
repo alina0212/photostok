@@ -87,10 +87,10 @@
                                             <li><span>Total:</span> <span>${{ total_price }}</span></li>
                                         </ul>
                                         {% if total_price != 0 %}
+                                            <div id="errorMessages" style="display: none;">
+                                                Please fill out all required fields correctly.
+                                            </div>
                                             <button id="send-btn" type="submit" class="btn amado-btn w-100">Send
-                                            </button>
-                                            <button id="download-btn" style="display: none;" type="submit"
-                                                    class="btn amado-btn w-100">Download
                                             </button>
                                         {% endif %}
                                     </div>
@@ -116,28 +116,25 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         var sendBtn = document.getElementById('send-btn');
-                        var downloadBtn = document.getElementById('download-btn');
                         var form = document.getElementById('checkout-form');
-                        var imageIdsInput = document.getElementById('id_image_ids');  // Django default id for the hidden input
+                        var imageIdsInput = document.getElementById('id_image_ids');
 
-                        // Перевірка, чи є форма валідною при будь-якому введенні користувача
+                        sendBtn.disabled = true;
+
                         form.addEventListener('input', function () {
                             sendBtn.disabled = !form.checkValidity();
                         });
 
                         sendBtn.addEventListener('click', function (event) {
-                            // Якщо форма не валідна, зупиняємо подальше виконання
                             if (!form.checkValidity()) {
                                 event.preventDefault();
-                                form.reportValidity(); // Це забезпечить візуальну індикацію помилок
+                                form.reportValidity();
                             } else {
-                                downloadBtn.style.display = 'block';
-                                sendBtn.disabled = true;
+                                downloadZipAndSubmitForm();
                             }
                         });
 
-                        downloadBtn.addEventListener('click', function (event) {
-                            event.preventDefault();
+                        function downloadZipAndSubmitForm() {
                             var xhr = new XMLHttpRequest();
                             xhr.open("GET", "{% url 'create_zip' %}", true);
                             xhr.responseType = "blob";
@@ -150,13 +147,12 @@
                                     link.download = "filename.zip";
                                     link.click();
 
-                                    // Після завершення завантаження файлу відправляємо форму
                                     sendForm();
                                 }
                             };
 
                             xhr.send();
-                        });
+                        }
 
                         function sendForm() {
                             var imageIds = [];
@@ -166,11 +162,11 @@
                             });
                             imageIdsInput.value = imageIds.join(',');
 
-                            // Відправляємо форму
                             form.submit();
                         }
                     });
                 </script>
+
 
             </div>
         </div>

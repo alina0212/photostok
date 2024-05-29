@@ -37,7 +37,6 @@ urlpatterns = [
     path('checkout/', checkout, name='checkout'),
     path('checkout.html', checkout, name='checkout_html'),
     path('create_zip/', create_zip, name='create_zip'),
-    # path('checkout_success/', checkout_success, name='checkout_success'),
 
     path('shop/', shop, name='shop'),
     path('shop.html', shop, name='shop_html'),
