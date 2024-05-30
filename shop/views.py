@@ -11,18 +11,18 @@ def shop(request):
     form = PriceFilterForm(request.GET or None)
     all_products = Product.objects.filter(is_visible=True)
     total_products = all_products.count()
+    search = request.GET.get('search', None)
+    if search is not None:
+        print("old products count:", products.count())
+        products = products.filter(name__icontains=search)
+        print("new products count:", products.count())
 
     print("Initial products count:", products.count())  # Debugging line
 
     if form.is_valid():
         print("Form is valid")  # Debugging line
-        search = request.GET.get('search', None)
         print("search:", search)
-        if search is not None:
-            print("old products count:", products.count())
-            products = products.filter(name__icontains=search)
-            print("new products count:", products.count())
-        else:
+        if search is None:
             min_price = form.cleaned_data.get('min_price')
             max_price = form.cleaned_data.get('max_price')
             if min_price is not None:
@@ -34,12 +34,15 @@ def shop(request):
         print("Form is not valid", form.errors)  # Debugging line
 
     selected_category_slug = request.GET.get('category', None)
-    if selected_category_slug:
+    if selected_category_slug and search is None:
         selected_category = Category.objects.filter(slug=selected_category_slug).first()
         products = products.filter(category=selected_category)
         categories_choice = [selected_category]
     else:
         categories_choice = [categories.first()] if categories else []
+
+    if search is not None:
+        categories_choice = categories
 
     displayed_products_count = products.count()  # after filter
 
