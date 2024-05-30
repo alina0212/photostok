@@ -130,7 +130,7 @@
                                 event.preventDefault();
                                 form.reportValidity();
                             } else {
-                                event.preventDefault(); // Prevent the default form submission
+                                event.preventDefault(); // Запобігає стандартній поведінці форми
                                 downloadZipAndSubmitForm();
                             }
                         });
@@ -148,7 +148,7 @@
                                     link.download = "filename.zip";
                                     link.click();
 
-                                    // Set the image IDs and redirect manually
+                                    // Установлює значення image IDs і перенаправляє користувача вручну
                                     var imageIds = [];
                                     var cartItems = document.querySelectorAll('.cart-items li img');
                                     cartItems.forEach(function (item) {
@@ -156,8 +156,8 @@
                                     });
                                     imageIdsInput.value = imageIds.join(',');
 
-                                    form.submit(); // Submit the form
-                                    window.location.href = "checkout.html"; // Redirect manually
+                                    form.submit(); // Надсилає форму
+                                    window.location.href = "checkout.html"; // Перенаправляє вручну
                                 }
                             };
 
