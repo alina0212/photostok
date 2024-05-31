@@ -43,7 +43,7 @@ def test_filter_by_max_price(client, setup_data):
 
     # Use max_price for filtering
     url = reverse('shop_html')
-    response = client.get(url, {'max_price': 300})
+    response = client.get(url, {'max_price': 200})
     assert response.status_code == 200
 
     content1 = response.content.decode()

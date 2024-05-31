@@ -116,7 +116,7 @@
                             <!-- Add to Cart Form -->
                             <form class="cart clearfix" method="post" action="{% url 'add_to_cart' product.id %}">
                                 {% csrf_token %}
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart
+                                <button type="submit" name="addtocart" value="{{ product.id }}" class="btn amado-btn">Add to cart
                                 </button>
                             </form>
 

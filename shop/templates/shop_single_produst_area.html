@@ -5,8 +5,6 @@
                     {% for category in categories_choice %}
                         {% for product in products %}
                         <div class="single-product-wrapper" id="menu-{{ category.slug }}">
-                            {% for category_product in category %}
-                                {% if product.id == category_product.id %}
                                 <!-- Product Image -->
                                 <div class="product-img">
                                     <img src="{{ product.image.url }}" alt="photo here">
@@ -31,8 +29,6 @@
                                         </a>
                                     </div>
                                 </div>
-                                  {% endif %}
-                            {% endfor %}
                             {% endfor %}
                         </div>
 
