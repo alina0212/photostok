@@ -1,0 +1,1 @@
+web: gunicorn photostok.wsgi --log-file - --log-level debug
