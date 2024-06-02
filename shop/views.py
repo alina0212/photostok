@@ -13,11 +13,7 @@ def shop(request):
     total_products = all_products.count()
     search = request.GET.get('search', None)
     if search is not None:
-        print("old products count:", products.count())
         products = products.filter(name__icontains=search)
-        print("new products count:", products.count())
-
-    print("Initial products count:", products.count())  # Debugging line
 
     if form.is_valid():
         print("Form is valid")  # Debugging line
