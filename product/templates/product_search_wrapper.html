@@ -10,6 +10,7 @@
                 <div class="col-12">
                     <div class="search-content">
                         <form action="#" method="get">
+                            <input type="hidden" name="category" value="{{ request.GET.category }}">
                             <input type="search" name="search" id="search" placeholder="Type your keyword...">
                             <button type="submit"><img src="{% static "img/core-img/search.png"%}" alt="i"></button>
                         </form>
