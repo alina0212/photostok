@@ -52,13 +52,13 @@ jobs:
         path: |
           htmlcov/index.html
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - uses: actions/checkout@v2
-    - uses: akhileshns/heroku-deploy@v3.13.15
-      with:
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: django-cicd
-        heroku_email: your-email@example.com
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: akhileshns/heroku-deploy@v3.13.15
+  #     with:
+  #       heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+  #       heroku_app_name: django-cicd
+  #       heroku_email: ivanetspolina@knu.ua

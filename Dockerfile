@@ -1,7 +1,6 @@
 # Use the latest version of the official Python image
 FROM python:latest
 
-
 # Set the working directory inside the container
 WORKDIR /app
 

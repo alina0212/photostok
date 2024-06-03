@@ -12,7 +12,6 @@ from cart.models import Cart, CartItem
 
 @pytest.fixture
 def create_cart(db):
-    # Create a session for the cart with timezone support
     expire_date = timezone.now() + timedelta(days=1)
     session = Session.objects.create(expire_date=expire_date)
     return Cart.objects.create(session=session)
@@ -20,7 +19,6 @@ def create_cart(db):
 
 @pytest.fixture
 def create_product(db):
-    # Create a product
     category = Category.objects.create(name="Test Category", slug="test-category")
     return Product.objects.create(name="Test Product", price=Decimal('10.00'), is_visible=True, category=category)
 
