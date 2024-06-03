@@ -35,9 +35,6 @@ def shop(request):
         products = products.filter(category=selected_category)
         categories_choice = [selected_category]
     else:
-        categories_choice = [categories.first()] if categories else []
-
-    if search is not None:
         categories_choice = categories
 
     displayed_products_count = products.count()  # after filter
