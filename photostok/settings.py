@@ -36,7 +36,7 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 
 ALLOWED_HOSTS = [ALLOWED_HOST]
-# Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
