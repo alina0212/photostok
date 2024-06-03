@@ -21,7 +21,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Install tblib
+    - name: Install 
       run: |
         pip install tblib
         pip install pytest-cov
