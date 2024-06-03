@@ -2,7 +2,7 @@ name: Django Web-site Pipeline
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ feature_templates ]
 
 jobs:
   build:
@@ -22,14 +22,14 @@ jobs:
         pip install -r requirements.txt
 
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:djangocicd
+      run: docker build . --file Dockerfile --tag my-image-name:photostok
 
     - name: Run Docker container
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DEBUG: 'false'
         ALLOWED_HOSTS: 'localhost,127.0.0.1'
-      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=djangoCICD.settings -e SECRET_KEY=$SECRET_KEY my-image-name:djangocicd
+      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=photostok.settings -e SECRET_KEY=$SECRET_KEY -e DEBUG=$DEBUG -e ALLOWED_HOSTS=$ALLOWED_HOSTS my-image-name:photostok
 
     - name: Apply database migrations
       run: docker exec DjangoContainer python manage.py migrate
