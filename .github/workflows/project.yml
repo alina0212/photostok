@@ -22,7 +22,9 @@ jobs:
         pip install -r requirements.txt
 
     - name: Install tblib
-      run: pip install tblib
+      run: |
+        pip install tblib
+        pip install pytest-cov
 
     - name: Build Docker image
       run: docker build . --file Dockerfile --tag my-image-name:photostok
@@ -40,20 +42,17 @@ jobs:
     - name: Collect static files
       run: docker exec DjangoContainer python manage.py collectstatic --noinput
 
-    - name: Run Django parallel tests
-      run: docker exec DjangoContainer python manage.py test --parallel
+    - name: Run pytest tests
+      run: docker exec DjangoContainer pytest --cov=.
 
     - name: Generate HTML report
-      run: |
-        docker exec DjangoContainer coverage run manage.py test
-        docker exec DjangoContainer coverage html
+      run: docker exec DjangoContainer pytest --cov=. --cov-report=html
 
     - name: Upload reports
       uses: actions/upload-artifact@v2
       with:
         name: Test and lint reports
-        path: |
-          htmlcov/index.html
+        path: htmlcov/
 
   deploy:
     runs-on: ubuntu-latest
