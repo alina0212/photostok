@@ -5,7 +5,6 @@ from django.http import HttpRequest, HttpResponse
 
 
 def cart(request: HttpRequest):
-    # Ensure the session is created if it doesn't exist
     if not request.session.session_key:
         request.session.create()
 
