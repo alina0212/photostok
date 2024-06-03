@@ -32,7 +32,8 @@ DB_PORT = os.environ.get('DB_PORT')
 ALLOWED_HOST = os.environ.get('ALLOWED_HOST', '*')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = False
+# os.environ.get('DEBUG', 'False') == 'True'
 
 
 ALLOWED_HOSTS = [ALLOWED_HOST]
