@@ -4,6 +4,7 @@
                 <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                     {% for category in categories_choice %}
                         {% for product in products %}
+                            {% if product.category_id == category.id %}
                         <div class="single-product-wrapper" id="menu-{{ category.slug }}">
                                 <!-- Product Image -->
                                 <div class="product-img">
@@ -25,12 +26,13 @@
                                     <div class="cart">
                                         <a href="{% url 'add_to_cart' product.id %}" data-toggle="tooltip"
                                            data-placement="left" title="Add to Cart">
-                                            <img src="{% static "img/core-img/cart.png" %}" alt="">
+                                             <img src="{% static "img/core-img/cart.png" %}" alt="">
                                         </a>
                                     </div>
                                 </div>
-                            {% endfor %}
                         </div>
+                    {% endif %}
+                    {% endfor %}
 
                     {% endfor %}
                 </div>
