@@ -29,7 +29,7 @@ jobs:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
         DEBUG: 'false'
         ALLOWED_HOSTS: 'localhost,127.0.0.1'
-      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=photostok.settings -e SECRET_KEY=$SECRET_KEY my-image-name:photostok
+      run: docker run --name DjangoContainer -d -e DJANGO_SETTINGS_MODULE=photostok.settings -e SECRET_KEY=$SECRET_KEY -e DEBUG=$DEBUG -e ALLOWED_HOSTS=$ALLOWED_HOSTS my-image-name:photostok
 
     - name: Apply database migrations
       run: docker exec DjangoContainer python manage.py migrate
