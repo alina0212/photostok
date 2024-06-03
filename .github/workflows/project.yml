@@ -2,7 +2,7 @@ name: Django Web-site Pipeline
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ feature_templates ]
 
 jobs:
   build:
