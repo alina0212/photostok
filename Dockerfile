@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 COPY . /app
 
 # Install additional tools
-RUN pip install coverage
+RUN pip install coverage pytest pytest-cov
 
 # Expose the port the web server will listen on
 EXPOSE 8000
